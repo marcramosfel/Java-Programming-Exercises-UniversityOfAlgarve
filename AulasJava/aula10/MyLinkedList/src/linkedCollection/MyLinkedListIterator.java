@@ -7,6 +7,7 @@ public class MyLinkedListIterator<E> implements Iterator<E>{
 	public MyLinkedListIterator(Node<E> head) {
 		this.current=head;
 	}
+
 	@Override
 	public boolean hasNext() {
 		return current!=null;
