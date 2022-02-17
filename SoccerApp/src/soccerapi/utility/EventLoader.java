@@ -14,41 +14,41 @@ public class EventLoader {
 	private  Event[] events;
 	private int homeTeamsGoals;
 	private int awayTeamsGoals;
-	private ArrayList<ArrayList<String>> homeTeamPlayers;// = new ArrayList<>();
-//	[[0,1,2,3,4][1,2,3]]
-	private ArrayList<ArrayList<String>> awayTeamPlayers;// = new ArrayList<>();
 
-	private int numberOfPlayers = SoccerFrame.NUMBER_OF_PLAYERS;
+	private ArrayList<ArrayList<String>> homeTeamPlayers;
+	private ArrayList<ArrayList<String>> awayTeamPlayers;
+
+	private final int numberOfPlayers = SoccerFrame.NUMBER_OF_PLAYERS;
 
 	public EventLoader() {
 		try {
 			String players = FileInterface.getPlayerNames();
 
-			String[] array_players = players.split(","); //array com todos os jogadores do ficheiro
+			String[] array_players = players.split(",");
 
 			if (array_players.length < (numberOfPlayers*2 + 2)) throw new NumberPlayersException(this.numberOfPlayers*2 + 2);
 
 			this.homeTeamPlayers = new ArrayList<>();
 			this.awayTeamPlayers = new ArrayList<>();
 
-			this.homeTeamPlayers.add(new ArrayList<String>());//Titulares Home
-			this.homeTeamPlayers.add(new ArrayList<String>());//Reservas Home
+			this.homeTeamPlayers.add(new ArrayList<>());
+			this.homeTeamPlayers.add(new ArrayList<>());
 
-			this.awayTeamPlayers.add(new ArrayList<String>());//Titulares Away
-			this.awayTeamPlayers.add(new ArrayList<String>());//Reservas Away
+			this.awayTeamPlayers.add(new ArrayList<>());
+			this.awayTeamPlayers.add(new ArrayList<>());
 
 			for(int i=0; i < numberOfPlayers ; i++){
-				this.homeTeamPlayers.get(0).add(array_players[i]); //Titulares Home
+				this.homeTeamPlayers.get(0).add(array_players[i]);
 			}
 			for(int i = numberOfPlayers; i<(int) Math.round(array_players.length / 2.0); i++){
-				this.homeTeamPlayers.get(1).add(array_players[i]); //Reservas home
+				this.homeTeamPlayers.get(1).add(array_players[i]);
 			}
 
 			for(int i= (int) Math.round(array_players.length / 2.0); i < (int) Math.round(array_players.length / 2.0) + numberOfPlayers; i++){
-				this.awayTeamPlayers.get(0).add(array_players[i]); //Titulares Away
+				this.awayTeamPlayers.get(0).add(array_players[i]);
 			}
 			for(int i = (int) Math.round(array_players.length / 2.0) + numberOfPlayers; i < array_players.length; i++){
-				this.awayTeamPlayers.get(1).add(array_players[i]); //Reservas Away
+				this.awayTeamPlayers.get(1).add(array_players[i]);
 			}
 
 			System.out.println("=====================HOME TEAM===================");
@@ -97,9 +97,8 @@ public class EventLoader {
 
 				if (i == 0 && evento instanceof DefaultEvent){
 					i--;
-				} else if(i != 0 && evento instanceof DefaultEvent){
+				}else if(i != 0 && evento instanceof DefaultEvent){
 					continue;
-
 				}else{
 					this.homeTeamsGoals = evento.getHomeTeamGoals();
 					this.awayTeamsGoals = evento.getAwayTeamGoals();
@@ -109,13 +108,11 @@ public class EventLoader {
 			this.events =  new Event[arrayListEvents.size()];
 			for (int i = 0; i < arrayListEvents.size(); i++){
 				this.events[i] = arrayListEvents.get(i);
-			} // existe uma funcao toArray
-
+			}
 		}catch (NumberPlayersException e){
 			exception = e;
 		}
 		if(exception != null) throw exception;
-
 	}
 
 	public IGameEvent[] getGameEvents() throws NullEventsException{

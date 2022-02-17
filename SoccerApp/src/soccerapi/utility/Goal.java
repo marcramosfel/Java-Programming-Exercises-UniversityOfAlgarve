@@ -19,7 +19,8 @@ public class Goal extends Event {
 
     }
 
-    public void generateGoal(String homeTeam, String awayTeam, ArrayList<ArrayList<String>> homeTeamPlayers, ArrayList<ArrayList<String>> awayTeamPlayers, int numberOfPlayers) {
+    public void generateGoal(String homeTeam, String awayTeam, ArrayList<ArrayList<String>> homeTeamPlayers,
+                             ArrayList<ArrayList<String>> awayTeamPlayers, int numberOfPlayers) {
         int teamProbability = Event.generateTicketNumber(0,9);
         int numberPlayer = Event.generateTicketNumber(0, numberOfPlayers - 1);
 

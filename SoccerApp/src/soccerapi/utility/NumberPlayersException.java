@@ -1,7 +1,7 @@
 package soccerapi.utility;
 
 public class NumberPlayersException extends Exception{
-    private int numberOfPlayers;
+    private final int numberOfPlayers;
 
     public NumberPlayersException(int numberOfPlayers) {
         super("Numero de jogadores insuficientes, o ficheiro deve ter mais de" + numberOfPlayers);

@@ -21,7 +21,8 @@ public class Penalty extends Event{
         generatePenalty(homeTeam, awayTeam, homeTeamPlayers, awayTeamPlayers, numberOfPlayers);
     }
 
-    public void generatePenalty(String homeTeam, String awayTeam, ArrayList<ArrayList<String>> homeTeamPlayers, ArrayList<ArrayList<String>> awayTeamPlayers, int numberOfPlayers) {
+    public void generatePenalty(String homeTeam, String awayTeam, ArrayList<ArrayList<String>> homeTeamPlayers,
+                                ArrayList<ArrayList<String>> awayTeamPlayers, int numberOfPlayers) {
         int teamProbability = Event.generateTicketNumber(0,9);
         int goalProbability = generateTicketNumber(0,99);
         int numberPlayerSuferred = Event.generateTicketNumber(0, numberOfPlayers - 1);
@@ -29,8 +30,8 @@ public class Penalty extends Event{
 
         if (teamProbability < 5){
 
-            String playerSuffered = homeTeamPlayers.get(0).get(numberPlayerSuferred); //QUEM SOFRE É QUEM BATE
-            String playerFault = awayTeamPlayers.get(0).get(numberPlayerFault); //QUEM FEZ O PENALTI
+            String playerSuffered = homeTeamPlayers.get(0).get(numberPlayerSuferred);
+            String playerFault = awayTeamPlayers.get(0).get(numberPlayerFault);
 
             if(goalProbability < Penalty.GOAL_PROBABILITY){
                 this.description = playerFault + " of the " + awayTeam +
@@ -43,8 +44,8 @@ public class Penalty extends Event{
 
         }else {
 
-            String playerSuffered = awayTeamPlayers.get(0).get(numberPlayerSuferred); //QUEM SOFRE É QUEM BATE
-            String playerFault = homeTeamPlayers.get(0).get(numberPlayerFault); //QUEM FEZ O PENALTI
+            String playerSuffered = awayTeamPlayers.get(0).get(numberPlayerSuferred);
+            String playerFault = homeTeamPlayers.get(0).get(numberPlayerFault);
 
             if(goalProbability< Penalty.GOAL_PROBABILITY){
                 this.description = playerFault + " of the " + homeTeam +

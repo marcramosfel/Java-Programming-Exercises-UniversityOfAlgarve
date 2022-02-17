@@ -25,7 +25,7 @@ public class Replacement extends Event{
         if (teamProbability < 5){
             String playerOut = homeTeamPlayers.get(0).get(numberPlayerOut);
 
-            String temp = String.copyValueOf(playerOut.toCharArray()); // esta variavel e pra ter certeza que nao havera problema com a string por esta ser tipo referencia
+            String temp = String.copyValueOf(playerOut.toCharArray());
 
             int numberPlayerIn = Event.generateTicketNumber(0, homeTeamPlayers.get(1).size()-1);
 
