@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import soccerapi.utility.EventLoader;
+import soccerapi.utility.NullEventsException;
 
 public class StartMatchButton extends JButton{
 	private Thread eventUpdater;
@@ -36,7 +37,9 @@ public class StartMatchButton extends JButton{
 									caller.playGame(loader.getGameEvents(), caller.events,caller.teamScore);
 								} catch (InterruptedException e) {
 									e.printStackTrace();
-								}							
+								} catch(NullEventsException e){
+									System.out.println(e.getMessage()); //Adicionei aqui
+								}
 							}
 						});
 						

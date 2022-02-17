@@ -4,8 +4,12 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class PossessionBall extends Event{
+
     private final Color color = new Color(255, 255, 255);
+
     private String description;
+
+    static final int PROBABILITY = 600;
 
 
 
@@ -17,7 +21,7 @@ public class PossessionBall extends Event{
 
     public void generateDescription(String homeTeam, String awayTeam,
                                     ArrayList<ArrayList<String>> homeTeamPlayers, ArrayList<ArrayList<String>> awayTeamPlayers, int numberOfPlayers){
-        int teamProbability = Event.generateTicketNumber(0,10);
+        int teamProbability = Event.generateTicketNumber(0,9);
         int numberPlayer = Event.generateTicketNumber(0, numberOfPlayers - 1);
         if (teamProbability < 5){
             String player = homeTeamPlayers.get(0).get(numberPlayer);

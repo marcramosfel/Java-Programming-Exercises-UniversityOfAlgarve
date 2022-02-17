@@ -2,15 +2,15 @@ package soccerapi.utility;
 
 import java.awt.*;
 
-public class RepeatEvent extends Event{
+public class DefaultEvent extends Event{
 
     private final String description;
 
     private final Color color = new Color(0,0, 0);
 
-    public RepeatEvent(int homeTeamsGoals, int awayTeamsGoals) {
+    public DefaultEvent(int homeTeamsGoals, int awayTeamsGoals) {
         super(homeTeamsGoals, awayTeamsGoals);
-        this.description = "Repetindo evento";
+        this.description = "Evento Default";
     }
 
     @Override

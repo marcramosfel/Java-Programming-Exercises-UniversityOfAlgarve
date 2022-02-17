@@ -9,16 +9,21 @@ public class Penalty extends Event{
 
     private final Color color = new Color(51, 122, 49);
 
+    static final int PROBABILITY = 900;
+
+    private final static int GOAL_PROBABILITY = 50;
+
+
+
     public Penalty(int homeTeamsGoals, int awayTeamsGoals, String homeTeam, String awayTeam,
                    ArrayList<ArrayList<String>> homeTeamPlayers, ArrayList<ArrayList<String>> awayTeamPlayers, int numberOfPlayers) {
         super(homeTeamsGoals, awayTeamsGoals);
         generatePenalty(homeTeam, awayTeam, homeTeamPlayers, awayTeamPlayers, numberOfPlayers);
     }
 
-    private void generatePenalty(String homeTeam, String awayTeam, ArrayList<ArrayList<String>> homeTeamPlayers, ArrayList<ArrayList<String>> awayTeamPlayers, int numberOfPlayers) {
-        int teamProbability = Event.generateTicketNumber(0,10);
-        int [] probability = getProbabilityPenalti();
-        int goalProbability = generateTicketNumber(0,100);
+    public void generatePenalty(String homeTeam, String awayTeam, ArrayList<ArrayList<String>> homeTeamPlayers, ArrayList<ArrayList<String>> awayTeamPlayers, int numberOfPlayers) {
+        int teamProbability = Event.generateTicketNumber(0,9);
+        int goalProbability = generateTicketNumber(0,99);
         int numberPlayerSuferred = Event.generateTicketNumber(0, numberOfPlayers - 1);
         int numberPlayerFault = Event.generateTicketNumber(0, numberOfPlayers - 1);
 
@@ -27,7 +32,7 @@ public class Penalty extends Event{
             String playerSuffered = homeTeamPlayers.get(0).get(numberPlayerSuferred); //QUEM SOFRE É QUEM BATE
             String playerFault = awayTeamPlayers.get(0).get(numberPlayerFault); //QUEM FEZ O PENALTI
 
-            if(goalProbability<probability[1]){
+            if(goalProbability < Penalty.GOAL_PROBABILITY){
                 this.description = playerFault + " of the " + awayTeam +
                         "made a penalty in " + playerSuffered + " of the " + homeTeam + ".\n" + playerSuffered + " score the penalty for the" + homeTeam;
                 setHomeTeamsGoals(1);
@@ -41,7 +46,7 @@ public class Penalty extends Event{
             String playerSuffered = awayTeamPlayers.get(0).get(numberPlayerSuferred); //QUEM SOFRE É QUEM BATE
             String playerFault = homeTeamPlayers.get(0).get(numberPlayerFault); //QUEM FEZ O PENALTI
 
-            if(goalProbability<probability[1]){
+            if(goalProbability< Penalty.GOAL_PROBABILITY){
                 this.description = playerFault + " of the " + homeTeam +
                         "made a penalty in " + playerSuffered + " of the " + awayTeam + "\n" + playerSuffered + " score the penalty for the" + awayTeam;
                 setAwayTeamsGoals(1);

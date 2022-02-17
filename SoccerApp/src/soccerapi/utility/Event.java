@@ -11,16 +11,6 @@ public abstract class Event implements IGameEvent {
     private int homeTeamsGoals;
     private int awayTeamsGoals;
 
-    private static final int PROBABILITY_POSSESSION_BALL = 600;
-    private static final int PROBABILITY_GOAL = 750;
-    private static final int PROBABILITY_REPLACEMENT = 850;
-    private static final int[] PROBABILITY_PENALTI = {900, 50};
-
-
-    public static int[] getProbabilityPenalti() {
-        return PROBABILITY_PENALTI;
-    }
-
     public static int generateTicketNumber(int min, int max) {
         int range = (max - min) + 1;
         return (int)(Math.random() * range) + min;
@@ -57,19 +47,18 @@ public abstract class Event implements IGameEvent {
 
     public static Event generateEvent(int homeTeamsGoals, int awayTeamsGoals, String homeTeam, String awayTeam,
                                       ArrayList<ArrayList<String>> homeTeamPlayers, ArrayList<ArrayList<String>> awayTeamPlayers, int numberOfPlayers){
-        int pb = generateTicketNumber(0, 1000);
-//        int pb = 870;
-        if (pb<Event.PROBABILITY_POSSESSION_BALL) {
+        int probability = generateTicketNumber(0, 999);
+
+        if (probability<PossessionBall.PROBABILITY) {
             return new PossessionBall(homeTeamsGoals, awayTeamsGoals, homeTeam, awayTeam, homeTeamPlayers, awayTeamPlayers, numberOfPlayers);
-        }else if (pb>Event.PROBABILITY_POSSESSION_BALL && pb<Event.PROBABILITY_GOAL){
+        }else if (probability>PossessionBall.PROBABILITY && probability<Goal.PROBABILITY){
             return new Goal(homeTeamsGoals, awayTeamsGoals, homeTeam, awayTeam, homeTeamPlayers, awayTeamPlayers, numberOfPlayers);
-        }else if (pb>Event.PROBABILITY_GOAL && pb<Event.PROBABILITY_REPLACEMENT){
+        }else if (probability>Goal.PROBABILITY && probability<Replacement.PROBABILITY){
             return new Replacement(homeTeamsGoals, awayTeamsGoals, homeTeam, awayTeam, homeTeamPlayers, awayTeamPlayers, numberOfPlayers);
-        }else if (pb>Event.PROBABILITY_REPLACEMENT && pb<Event.PROBABILITY_PENALTI[0] ){
+        }else if (probability>Replacement.PROBABILITY && probability<Penalty.PROBABILITY){
             return new Penalty(homeTeamsGoals, awayTeamsGoals, homeTeam, awayTeam, homeTeamPlayers, awayTeamPlayers, numberOfPlayers);
         }else{
-//            return generateEvent(homeTeamsGoals, awayTeamsGoals, homeTeam, awayTeam, homeTeamPlayers, awayTeamPlayers, numberOfPlayers);
-            return new RepeatEvent(homeTeamsGoals, awayTeamsGoals);
+            return new DefaultEvent(homeTeamsGoals, awayTeamsGoals);
         }
     }
 }

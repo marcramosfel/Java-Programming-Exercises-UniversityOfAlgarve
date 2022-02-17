@@ -28,7 +28,7 @@ public class SoccerFrame extends JFrame{
 	JTextField awayTeamField;
 	JTextField events=null;
 	JTextField teamScore;
-	static final int NUMBER_OF_PLAYERS=5;
+	public static final int NUMBER_OF_PLAYERS=5;
 	private static final int TIME_PER_FRAME=1000;
 	
 	public SoccerFrame() {
