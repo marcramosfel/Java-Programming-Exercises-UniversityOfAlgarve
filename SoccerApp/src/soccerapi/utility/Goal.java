@@ -15,11 +15,11 @@ public class Goal extends Event {
     public Goal(int homeTeamsGoals, int awayTeamsGoals, String homeTeam, String awayTeam,
                 ArrayList<ArrayList<String>> homeTeamPlayers, ArrayList<ArrayList<String>> awayTeamPlayers, int numberOfPlayers) {
         super(homeTeamsGoals, awayTeamsGoals);
-        generateGoal(homeTeam, awayTeam, homeTeamPlayers, awayTeamPlayers, numberOfPlayers);
+        generateDescription(homeTeam, awayTeam, homeTeamPlayers, awayTeamPlayers, numberOfPlayers);
 
     }
 
-    public void generateGoal(String homeTeam, String awayTeam, ArrayList<ArrayList<String>> homeTeamPlayers,
+    public void generateDescription(String homeTeam, String awayTeam, ArrayList<ArrayList<String>> homeTeamPlayers,
                              ArrayList<ArrayList<String>> awayTeamPlayers, int numberOfPlayers) {
         int teamProbability = Event.generateTicketNumber(0,9);
         int numberPlayer = Event.generateTicketNumber(0, numberOfPlayers - 1);
