@@ -20,13 +20,13 @@ public class Game {
         System.out.println("\n#######################################################\nJogador 2 escondendo os barcos em seu tabuleiro:\n");
         String[][] tabuleiro_dois_com_barcos = tabuleiro.coloca_barcos(2);
 
-        System.out.println("\n#######################################################\nPassando a Faze de Ataque (*)\n#######################################################");
+        System.out.println("\n#######################################################\nPassando a Fase de Ataque (*)\n#######################################################");
 
         String[][] tabuleiro_revelado_do_jogador_dois;
         String[][] tabuleiro_revelado_do_jogador_um;
 
 
-        while (jogador_um_ganhou==false || jogador_dois_ganhou==false) {
+        while (!jogador_um_ganhou || !jogador_dois_ganhou) {
             System.out.println("\n#######################################################\nJogador 1 atacando os barcos do tabuleiro do Jogador 2:\n");
             tabuleiro_revelado_do_jogador_dois = tabuleiro.ataca_tabuleiro(tabuleiro_dois_com_barcos, tabuleiro_vazio_dois);
             tabuleiro.desenha_tabuleiro(tabuleiro_revelado_do_jogador_dois, 2);
